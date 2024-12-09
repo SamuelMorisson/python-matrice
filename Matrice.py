@@ -9,15 +9,15 @@ class Matrice:
         print("\nAFFICHAGE")
         for matrice in self.__taille_matrices:
             print("------------------------------")
-            a = []
+            lignes = []
             for i in range(matrice):
-                b = []
+                colonnes = []
                 for j in range(matrice):
-                    b.append(0)
-                a.append(b)
+                    colonnes.append(0)
+                lignes.append(colonnes)
 
-            for i in range(len(a)):
-                print(a[i])
+            for i in range(len(lignes)):
+                print(lignes[i])
 
 
     def somme_matrice(self):
@@ -26,14 +26,14 @@ class Matrice:
         for matrice in self.__taille_matrices:
             somme += matrice
         print("------------------------------")
-        a = []
+        lignes = []
         for i in range(somme):
-            b = []
+            colonnes = []
             for j in range(somme):
-                b.append(0)
-            a.append(b)
-        for i in range(len(a)):
-            print(a[i])
+                colonnes.append(0)
+            lignes.append(colonnes)
+        for i in range(len(lignes)):
+            print(lignes[i])
 
 
     def multiplication_matrice(self):
@@ -42,14 +42,14 @@ class Matrice:
         for matrice in self.__taille_matrices:
             multiple *= matrice
         print("------------------------------")
-        a = []
+        lignes = []
         for i in range(multiple):
-            b = []
+            colonnes = []
             for j in range(multiple):
-                b.append(0)
-            a.append(b)
-        for i in range(len(a)):
-            print(a[i])
+                colonnes.append(0)
+            lignes.append(colonnes)
+        for i in range(len(lignes)):
+            print(lignes[i])
 
 '''listeTest : tuple = (2, 4)
 test = Matrice(listeTaille)
