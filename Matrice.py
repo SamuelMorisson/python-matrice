@@ -51,9 +51,15 @@ class Matrice:
         for i in range(len(a)):
             print(a[i])
 
-listeTaille : tuple = (2, 4)
+'''listeTest : tuple = (2, 4)
 test = Matrice(listeTaille)
 test.afficher_matrices()
 test.somme_matrice()
-test.multiplication_matrice()
+test.multiplication_matrice()'''
+
+matricesTest = (3, 3)
+listeMatrice = Matrice(matricesTest)
+listeMatrice.afficher_matrices()
+listeMatrice.somme_matrice()
+listeMatrice.multiplication_matrice()
 
