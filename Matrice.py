@@ -51,27 +51,29 @@ class Matrice:
 
 
     def __mul__(self, autre_matrice):
-        matrice_multiple = []
+        if self.__matrice != None and autre_matrice.get_matrice() != None:
+            if len(self.__matrice) == len(autre_matrice.get_matrice()):
+        
+                # Créé un mnouvelle matrice remplie de 0 de la taille des 2 autres matrices
+                matrice_multiple = []
+                for i in range(len(self.__matrice)):
+                    ligne = []
+                    for j in range(len(self.__matrice)):
+                        ligne.append(0)
+                    matrice_multiple.append(ligne)
 
-        # Créé un mnouvelle matrice remplie de 0 de la taille des 2 autres matrices
-        for i in range(len(self.__matrice)):
-            ligne = []
-            for j in range(len(self.__matrice)):
-                ligne.append(0)
-            matrice_multiple.append(ligne)
+                # Fait la multiplication des 2 matrcies en changeant chacune des valeurs de la nouvelle
+                for line in range(len(self.__matrice)):
+                    for column in range(len(self.__matrice)):
+                        value = 0
+                        for n in range(len(self.__matrice)):
+                            value += (self.__matrice[line][n]) * (autre_matrice.get_matrice()[n][column])
+                        matrice_multiple[line][column] = value
 
-        # Fait la multiplication des 2 matrcies en changeant chacune des valeurs de la nouvelle
-        for line in range(len(self.__matrice)):
-            for column in range(len(self.__matrice)):
-                value = 0
-                for n in range(len(self.__matrice)):
-                    value += (self.__matrice[line][n]) * (autre_matrice.get_matrice()[n][column])
-                matrice_multiple[line][column] = value
-
-        # Affiche le résultat
-        print("\nMULTIPLICATION")
-        for line in matrice_multiple:
-                    print(line)
+                # Affiche le résultat
+                print("\nMULTIPLICATION")
+                for line in matrice_multiple:
+                            print(line)
 
 
 
