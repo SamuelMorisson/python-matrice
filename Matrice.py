@@ -18,6 +18,7 @@ class Matrice:
 
     def __str__(self):
         if self.__matrice != None:
+            print("\nAFFICHAGE")
             for line in self.__matrice:
                 print(line)
         else:
@@ -28,18 +29,30 @@ class Matrice:
         # Vérifie que les matrices ne soit pas vide et de même taile
         if self.__matrice != None and autre_matrice.get_matrice() != None:
             if len(self.__matrice) == len(autre_matrice.get_matrice()):
-                # Somme des matrices
-                somme_matrices = self.__matrice
+                
+                # Créé un mnouvelle matrice remplie de 0 de la taille des 2 autres matrices
+                somme_matrices = []
                 for i in range(len(self.__matrice)):
+                    ligne = []
                     for j in range(len(self.__matrice)):
-                        somme_matrices[i][j] += autre_matrice.get_matrice()[i][j]
+                        ligne.append(0)
+                    somme_matrices.append(ligne)
+
+                # Somme des matrices
+                for line in range(len(self.__matrice)):
+                    for column in range(len(self.__matrice)):
+                        somme_matrices[line][column] = self.__matrice[line][column] + autre_matrice.get_matrice()[line][column]
+                        #print(somme_matrices)
+
                 # Affichage de la somme des 2 matrices
+                print("\nSOMME")
                 for line in somme_matrices:
                     print(line)
 
 
     def __mul__(self, autre_matrice):
         matrice_multiple = []
+
         # Créé un mnouvelle matrice remplie de 0 de la taille des 2 autres matrices
         for i in range(len(self.__matrice)):
             ligne = []
@@ -54,9 +67,9 @@ class Matrice:
                 for n in range(len(self.__matrice)):
                     value += (self.__matrice[line][n]) * (autre_matrice.get_matrice()[n][column])
                 matrice_multiple[line][column] = value
-                print(value)
-                
+
         # Affiche le résultat
+        print("\nMULTIPLICATION")
         for line in matrice_multiple:
                     print(line)
 
@@ -77,5 +90,6 @@ matrice2 = [
 ]
 objetMatrice1 = Matrice(matrice1)
 objetMatrice2 = Matrice(matrice2)
+objetMatrice1.__str__()
+objetMatrice1.__add__(objetMatrice2)
 objetMatrice1.__mul__(objetMatrice2)
-#matrice2 = Matrice(4)
