@@ -1,65 +1,81 @@
 class Matrice:
-    def __init__(self, taille_matrices : tuple):
-        self.__taille_matrices = taille_matrices
+    def __init__(self, matrice : list):
 
-    def get_matrices(self):
-        return self.__taille_matrices
+        length_matrice = len(matrice)
+        matrice_carre = True
+        for i in matrice:
+            if len(i) != length_matrice:
+                matrice_carre = False
+        if matrice_carre == True:
+            self.__matrice = matrice
+        else:
+            self.__matrice = None
+
+
+    def get_matrice(self):
+        return self.__matrice
     
-    def afficher_matrices(self):
-        print("\nAFFICHAGE")
-        for matrice in self.__taille_matrices:
-            print("------------------------------")
-            lignes = []
-            for i in range(matrice):
-                colonnes = []
-                for j in range(matrice):
-                    colonnes.append(0)
-                lignes.append(colonnes)
 
-            for i in range(len(lignes)):
-                print(lignes[i])
+    def __str__(self):
+        if self.__matrice != None:
+            for line in self.__matrice:
+                print(line)
+        else:
+            print("Cette matrice n'est pas carrée")
 
 
-    def somme_matrice(self):
-        print("\nSOMME")
-        somme = 0
-        for matrice in self.__taille_matrices:
-            somme += matrice
-        print("------------------------------")
-        lignes = []
-        for i in range(somme):
-            colonnes = []
-            for j in range(somme):
-                colonnes.append(0)
-            lignes.append(colonnes)
-        for i in range(len(lignes)):
-            print(lignes[i])
+    def __add__(self, autre_matrice):
+        # Vérifie que les matrices ne soit pas vide et de même taile
+        if self.__matrice != None and autre_matrice.get_matrice() != None:
+            if len(self.__matrice) == len(autre_matrice.get_matrice()):
+                # Somme des matrices
+                somme_matrices = self.__matrice
+                for i in range(len(self.__matrice)):
+                    for j in range(len(self.__matrice)):
+                        somme_matrices[i][j] += autre_matrice.get_matrice()[i][j]
+                # Affichage de la somme des 2 matrices
+                for line in somme_matrices:
+                    print(line)
 
 
-    def multiplication_matrice(self):
-        print("\nMULTIPLE")
-        multiple = 1
-        for matrice in self.__taille_matrices:
-            multiple *= matrice
-        print("------------------------------")
-        lignes = []
-        for i in range(multiple):
-            colonnes = []
-            for j in range(multiple):
-                colonnes.append(0)
-            lignes.append(colonnes)
-        for i in range(len(lignes)):
-            print(lignes[i])
+    def __mul__(self, autre_matrice):
+        matrice_multiple = []
+        # Créé un mnouvelle matrice remplie de 0 de la taille des 2 autres matrices
+        for i in range(len(self.__matrice)):
+            ligne = []
+            for j in range(len(self.__matrice)):
+                ligne.append(0)
+            matrice_multiple.append(ligne)
 
-'''listeTest : tuple = (2, 4)
-test = Matrice(listeTaille)
-test.afficher_matrices()
-test.somme_matrice()
-test.multiplication_matrice()'''
+        # Fait la multiplication des 2 matrcies en changeant chacune des valeurs de la nouvelle
+        for line in range(len(self.__matrice)):
+            for column in range(len(self.__matrice)):
+                value = 0
+                for n in range(len(self.__matrice)):
+                    value += (self.__matrice[line][n]) * (autre_matrice.get_matrice()[n][column])
+                matrice_multiple[line][column] = value
+                print(value)
+                
+        # Affiche le résultat
+        for line in matrice_multiple:
+                    print(line)
 
-matricesTest = (3, 3)
-listeMatrice = Matrice(matricesTest)
-listeMatrice.afficher_matrices()
-listeMatrice.somme_matrice()
-listeMatrice.multiplication_matrice()
 
+
+
+
+matrice1 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+matrice2 = [
+    [9, 2, 5],
+    [8, 6, 3],
+    [1, 4, 7]
+]
+objetMatrice1 = Matrice(matrice1)
+objetMatrice2 = Matrice(matrice2)
+objetMatrice1.__mul__(objetMatrice2)
+#matrice2 = Matrice(4)
